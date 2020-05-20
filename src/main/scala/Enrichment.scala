@@ -1,21 +1,13 @@
 import java.sql.{Connection, DriverManager, ResultSet, SQLException}
-
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.{FileSystem, Path}
-
 
 object Enrichment extends App {
   val conf = new Configuration()
   val uri ="/user/fall2019/snehith/"
 
-  conf.addResource(new Path ("/home/bd-user/opt/hadoop-2.7.3/etc/cloudera/core-site.xml"))
-  conf.addResource(new Path ("/home/bd-user/opt/hadoop-2.7.3/etc/cloudera/hdfs-site.xml"))
-  val fs: FileSystem= FileSystem.get(conf)
-  println(fs.getUri)
-
   var create = new Staging
   create.Directories()
-
   // Step 1: load the Hive JDBC driver
   val driverName: String = "org.apache.hive.jdbc.HiveDriver"
   Class.forName(driverName)
